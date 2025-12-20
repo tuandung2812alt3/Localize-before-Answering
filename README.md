@@ -1,4 +1,4 @@
-# LOBA: Language-Optimized Boundary Attention for Medical VQA Segmentation
+# **LOBA**, Localizing Before Answering: A Benchmark for Grounded Medical Visual Question Answering
 
 This repository contains the code for **LOBA**, Localizing Before Answering: A Benchmark for Grounded Medical Visual Question Answering from IJCAI 2025
 
