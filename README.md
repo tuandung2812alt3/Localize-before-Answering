@@ -45,10 +45,6 @@ dataset/
 
 ## Model Weights
 
-You need the following components:
-1. A LLaVA-compatible vision–language backbone
-2. A SAM ViT-H checkpoint
-3. A LOBA fine-tuned model checkpoint
 
 ### SAM ViT-H
 Download:
