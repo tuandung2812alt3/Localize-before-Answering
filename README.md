@@ -27,6 +27,9 @@ pip install flash-attn --no-build-isolation
 The HealMed-VQA dataset is prepared using the provided script.
 
 ### Prepare dataset
+- Please obtain your usage permission and download the MIMIC-CXR dataset here
+https://physionet.org/content/mimic-cxr/2.1.0/
+
 ```bash
 python prepare_healmed_vqa.py   --input_root /path/to/raw/MIMIC-CXR   --output_root ./dataset/MIMIC-CXR
 ```
