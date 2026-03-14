@@ -1,8 +1,10 @@
-# **LOBA**, Localizing Before Answering: A Benchmark for Grounded Medical Visual Question Answering
+# **LOBA** — Localizing Before Answering: A Benchmark for Grounded Medical Visual Question Answering
 
-This repository contains the code for **LOBA**, Localizing Before Answering: A Benchmark for Grounded Medical Visual Question Answering from IJCAI 2025
+This repository contains the official code for **LOBA**, accepted at **IJCAI 2025**.
 
+> **Paper:** [Localizing Before Answering: A Benchmark for Grounded Medical Visual Question Answering](https://arxiv.org/abs/2505.00744)
 
+LOBA introduces a grounded medical VQA framework that first localizes relevant regions in a medical image before generating a textual answer. The benchmark is built on MIMIC-CXR and provides paired segmentation masks with clinical questions and answers.
 
 ---
 
@@ -26,15 +28,17 @@ pip install flash-attn --no-build-isolation
 
 The HealMed-VQA dataset is prepared using the provided script.
 
-### Prepare dataset
-- Please obtain your usage permission and download the MIMIC-CXR dataset here
+### Download MIMIC-CXR
+Please obtain usage permission and download the MIMIC-CXR dataset from PhysioNet:
 ```
 https://physionet.org/content/mimic-cxr/2.1.0/
 ```
 
-
+### Run preparation script
 ```bash
-python prepare_healmed_vqa.py   --input_root /path/to/raw/MIMIC-CXR   --output_root ./dataset/MIMIC-CXR
+python prepare_healmed_vqa.py \
+  --input_root /path/to/raw/MIMIC-CXR \
+  --output_root ./dataset/MIMIC-CXR
 ```
 
 ### Expected structure
@@ -51,42 +55,43 @@ dataset/
 
 ## Model Weights
 
-
 ### SAM ViT-H
-Download:
+Download the SAM ViT-H checkpoint from:
 ```
 https://dl.fbaipublicfiles.com/segment_anything/sam_vit_h_4b8939.pth
 ```
 
 ---
+
 ## Training
 
-CUDA_VISIBLE_DEVICES=0 python train_ds.py     --vision_pretrained /path/to/sam_vit_h_4b8939.pth   --data_root ./dataset/healmed_vqa   --model_dir ./model
+```bash
+CUDA_VISIBLE_DEVICES=0 python train_ds.py \
+  --vision_pretrained /path/to/sam_vit_h_4b8939.pth \
+  --data_root ./dataset/healmed_vqa \
+  --model_dir ./model
+```
 
-
+---
 
 ## Inference
 
-The inference function with attention modification is done via `infer.py`.
+Inference with attention modification is handled by `infer.py`.
 
 ### Basic command
 ```bash
-CUDA_VISIBLE_DEVICES=0 python infer.py   --model_path /path/to/loba_model   --vision_pretrained /path/to/sam_vit_h_4b8939.pth   --data_root ./dataset/healmed_vqa   --output_dir ./outputs
-```
-
-### Optional flags
-```bash
---precision bf16
---load_in_8bit
---load_in_4bit
---max_samples 100
+CUDA_VISIBLE_DEVICES=0 python infer.py \
+  --model_path /path/to/loba_model \
+  --vision_pretrained /path/to/sam_vit_h_4b8939.pth \
+  --data_root ./dataset/healmed_vqa \
+  --output_dir ./outputs
 ```
 
 ---
 
 ## Outputs
 
-Inference produces:
+Running inference produces:
 - Segmentation masks
 - Textual answers
 - A JSON file with serialized predictions
@@ -94,9 +99,9 @@ Inference produces:
 ```
 outputs/
 ├── predictions.json
-├── masks/
-│   ├── sample_000.png
-│   └── ...
+└── masks/
+    ├── sample_000.png
+    └── ...
 ```
 
 ---
