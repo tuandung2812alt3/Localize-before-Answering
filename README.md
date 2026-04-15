@@ -28,6 +28,10 @@ pip install flash-attn --no-build-isolation
 
 The HealMed-VQA dataset is prepared using the provided script.
 
+### Data Annotation
+Download the annotation here. The HuggingFace link includes image IDs, question and answer, and the segmentation mask of the Area of Interest:
+https://huggingface.co/datasets/tuandung2812/Heal-MedVQA
+
 ### Download MIMIC-CXR
 Please obtain usage permission and download the MIMIC-CXR dataset from PhysioNet:
 ```
