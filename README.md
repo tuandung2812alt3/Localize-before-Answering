@@ -1,4 +1,4 @@
-# **LOBA** — Localizing Before Answering: A Benchmark for Grounded Medical Visual Question Answering
+[IJCAI'25] # **LOBA** — Localizing Before Answering: A Benchmark for Grounded Medical Visual Question Answering
 
 This repository contains the official code for **LOBA**, accepted at **IJCAI 2025**.
 
